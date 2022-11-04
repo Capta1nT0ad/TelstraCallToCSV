@@ -17,7 +17,7 @@ while True:
         print("Time taken:", json_parse_data["data"]["strategicUsageHistory"]["usageHistory"][day_no]["usageDisplay"])
         print("Amount charged:", json_parse_data["data"]["strategicUsageHistory"]["usageHistory"][day_no]["chargeAmount"])
         day_no = day_no + 1
-    except:
+    except IndexError:
         break
 day_no = 0
 write_data = open("out.csv", "a")
@@ -27,7 +27,7 @@ while True:
         write_data.write("\n" + str(day_no + 1) + "," + json_parse_data["data"]["strategicUsageHistory"]["usageHistory"][day_no]["eventDateAndTime"] + "," + json_parse_data["data"]["strategicUsageHistory"]["serviceId"] + "," + json_parse_data["data"]["strategicUsageHistory"]["usageHistory"][day_no]["calledPartyNumber"] + "," + json_parse_data["data"]["strategicUsageHistory"]["usageHistory"][day_no]["usageDisplay"] + "," + json_parse_data["data"]["strategicUsageHistory"]["usageHistory"][day_no]["chargeAmount"])
 
         day_no = day_no + 1
-    except:
+    except IndexError:
         exit(0)
 write_data.close()
 read_data
