@@ -28,5 +28,5 @@ while True:
 
         day_no = day_no + 1
     except IndexError:
-        exit(0)
+        break
 write_data.close()
