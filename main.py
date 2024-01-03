@@ -30,4 +30,3 @@ while True:
     except IndexError:
         exit(0)
 write_data.close()
-read_data
