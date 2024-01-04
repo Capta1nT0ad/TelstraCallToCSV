@@ -74,9 +74,9 @@ def main():
                 os.remove(files)
             print("Finished.")
         else:
-            print("Nothing to do.")
+            print("Nothing to clean up.")
 
-    if args.copying or args.version:
+    if args.copying or args.version or args.clean:
         exit(0)
 
     if (args.key is None):
@@ -102,13 +102,7 @@ def main():
             print("phone_number = string    # phone number to use.")
             exit(78)
 
-        try:
-            get_parse_json(args.key, 6)
-        except KeyError:
-            pass
-            # need to figure out what is going on here...
-            # why is it going back to a seemingly random
-            # item of the list?
+        get_parse_json(args.key, 6)
 
 
 def get_parse_json(key, months):
@@ -174,7 +168,7 @@ def get_parse_json(key, months):
         if response.status_code == 401:
             print("The remote host returned an HTTP error "
                   + str(response.status_code) + ".")
-            print("Log in again and check you provided a valid key.")
+            print(" > > Log in again and double-check your key.")
             print("Cleaning up...")
             for files in glob.glob("*.csv"):
                 os.remove(files)
@@ -184,7 +178,7 @@ def get_parse_json(key, months):
         if response.status_code == 403:
             print("The remote host returned an HTTP error "
                   + str(response.status_code) + ".")
-            print("Check that your configuration file is correct.")
+            print(" > > Check that config.py is correct.")
             print("Cleaning up...")
             for files in glob.glob("*.csv"):
                 os.remove(files)
@@ -193,14 +187,15 @@ def get_parse_json(key, months):
 
         elif response.status_code != 200:
             print("The remote host returned an HTTP error "
-                  + str(response.status_code) + ". Let's try again.")
+                  + str(response.status_code) + ".")
+            print(" > > We may be being rate limited.")
+            print(" > > Please run the program again.")
+            print(" > > Otherwise, please file a bug report.")
             print("Cleaning up...")
             for files in glob.glob("*.csv"):
                 os.remove(files)
-            try:
-                get_parse_json(key, 6)
-            except KeyError:
-                pass
+            print("Finished.")
+            exit(76)
 
         print("Done.")
 
@@ -275,7 +270,7 @@ def get_parse_json(key, months):
                 if response.status_code == 401:
                     print("The remote host returned an HTTP error "
                           + str(response.status_code) + ".")
-                    print("Log in again and check you provided a valid key.")
+                    print(" > > Log in again and double-check your key.")
                     print("Cleaning up...")
                     for files in glob.glob("*.csv"):
                         os.remove(files)
@@ -285,7 +280,7 @@ def get_parse_json(key, months):
                 if response.status_code == 403:
                     print("The remote host returned an HTTP error "
                           + str(response.status_code) + ".")
-                    print("Check that your configuration file is correct.")
+                    print(" > > Check that config.py is correct.")
                     print("Cleaning up...")
                     for files in glob.glob("*.csv"):
                         os.remove(files)
@@ -294,11 +289,14 @@ def get_parse_json(key, months):
 
                 elif response.status_code != 200:
                     print("The remote host returned an HTTP error "
-                          + str(response.status_code) + ". Let's try again.")
+                          + str(response.status_code) + ".")
+                    print(" > > We may be being rate limited.")
+                    print(" > > Please run the program again.")
                     print("Cleaning up...")
                     for files in glob.glob("*.csv"):
                         os.remove(files)
-                    get_parse_json(key, 6)
+                    print("Finished.")
+                    exit(76)
 
                 print("Done.")
                 print("Saving " + str(start_date) + "pg" + str(i+2) + ".csv"
@@ -349,8 +347,11 @@ def get_parse_json(key, months):
 
 
 if __name__ == "__main__":
+
     try:
         main()
+        print("Finished all jobs.")
+
     except KeyboardInterrupt:
         print("Cleaning up...")
         for files in glob.glob("*.csv"):
