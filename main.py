@@ -45,6 +45,11 @@ def main():
     )
 
     parser.add_argument(
+        '--phone',
+        help='override the default account phone number in config.py'
+    )
+
+    parser.add_argument(
         'key',
         help='My Telstra session key',
         nargs="?"
@@ -94,7 +99,11 @@ def main():
                 print("account_uuid = string    # the account UUID, see docs.")
                 print("phone_number = string    # phone number to use.")
                 exit(78)
-            int(config.phone_number)
+            if args.phone is None:
+                int(config.phone_number)
+                phone = config.phone_number
+            else:
+                phone = args.phone
         except Exception:
             print("Please configure TelstraCallToCSV in 'config.py':")
             print("payment_type = string    # payment type, e.g. prepaid")
@@ -102,10 +111,10 @@ def main():
             print("phone_number = string    # phone number to use.")
             exit(78)
 
-        get_parse_json(args.key, 6)
+        get_parse_json(args.key, phone, 6)
 
 
-def get_parse_json(key, months):
+def get_parse_json(key, phone, months):
 
     import requests
     import json
@@ -151,7 +160,7 @@ def get_parse_json(key, months):
         params = {
             'paymentType': config.payment_type,
             'accountUuid': config.account_uuid,
-            'serviceId': config.phone_number,
+            'serviceId': phone,
             'startDate': start_date + '01',
             'endDate': end_date + '01',
             'usageGroup': 'CALL',
@@ -253,7 +262,7 @@ def get_parse_json(key, months):
                 params = {
                     'paymentType': config.payment_type,
                     'accountUuid': config.account_uuid,
-                    'serviceId': config.phone_number,
+                    'serviceId': phone,
                     'startDate': start_date + '01',
                     'endDate': end_date + '01',
                     'usageGroup': 'CALL',
