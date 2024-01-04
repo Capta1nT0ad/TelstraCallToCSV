@@ -3,6 +3,7 @@
 import config
 import glob
 import os
+import sys
 
 
 def main():
@@ -82,7 +83,7 @@ def main():
             print("Nothing to clean up.")
 
     if args.copying or args.version or args.clean:
-        exit(0)
+        sys.exit(0)
 
     if (args.key is None):
 
@@ -98,7 +99,7 @@ def main():
                 print("payment_type = string    # payment type, e.g. prepaid")
                 print("account_uuid = string    # the account UUID, see docs.")
                 print("phone_number = string    # phone number to use.")
-                exit(78)
+                sys.exit(78)
             if args.phone is None:
                 int(config.phone_number)
                 phone = config.phone_number
@@ -109,7 +110,7 @@ def main():
             print("payment_type = string    # payment type, e.g. prepaid")
             print("account_uuid = string    # the account UUID, see docs.")
             print("phone_number = string    # phone number to use.")
-            exit(78)
+            sys.exit(78)
 
         get_parse_json(args.key, phone, 6)
 
@@ -182,7 +183,7 @@ def get_parse_json(key, phone, months):
             for files in glob.glob("*.csv"):
                 os.remove(files)
             print("Finished.")
-            exit(76)
+            sys.exit(76)
 
         if response.status_code == 403:
             print("The remote host returned an HTTP error "
@@ -192,7 +193,7 @@ def get_parse_json(key, phone, months):
             for files in glob.glob("*.csv"):
                 os.remove(files)
             print("Finished.")
-            exit(76)
+            sys.exit(76)
 
         elif response.status_code != 200:
             print("The remote host returned an HTTP error "
@@ -204,7 +205,7 @@ def get_parse_json(key, phone, months):
             for files in glob.glob("*.csv"):
                 os.remove(files)
             print("Finished.")
-            exit(76)
+            sys.exit(76)
 
         print("Done.")
 
@@ -284,7 +285,7 @@ def get_parse_json(key, phone, months):
                     for files in glob.glob("*.csv"):
                         os.remove(files)
                     print("Finished.")
-                    exit(76)
+                    sys.exit(76)
 
                 if response.status_code == 403:
                     print("The remote host returned an HTTP error "
@@ -294,7 +295,7 @@ def get_parse_json(key, phone, months):
                     for files in glob.glob("*.csv"):
                         os.remove(files)
                     print("Finished.")
-                    exit(76)
+                    sys.exit(76)
 
                 elif response.status_code != 200:
                     print("The remote host returned an HTTP error "
@@ -305,7 +306,7 @@ def get_parse_json(key, phone, months):
                     for files in glob.glob("*.csv"):
                         os.remove(files)
                     print("Finished.")
-                    exit(76)
+                    sys.exit(76)
 
                 print("Done.")
                 print("Saving " + str(start_date) + "pg" + str(i+2) + ".csv"
@@ -366,4 +367,4 @@ if __name__ == "__main__":
         for files in glob.glob("*.csv"):
             os.remove(files)
         print("Finished.")
-        exit(0)
+        sys.exit(0)
