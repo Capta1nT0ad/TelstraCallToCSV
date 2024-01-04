@@ -87,7 +87,7 @@ def main():
     if (args.key is None):
 
         print("TelstraCallToCSV: error: the following arguments "
-              "are required: key, correlation-id, output\n")
+              "are required: key\n")
         parser.print_help()
 
     else:
