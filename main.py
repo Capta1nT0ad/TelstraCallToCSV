@@ -48,8 +48,14 @@ def main():
     )
 
     parser.add_argument(
-        '--phone',
+        '-P', '--phone',
         help='override the default account phone number in config.py'
+    )
+
+    parser.add_argument(
+        '-M', '--months',
+        help='specify how many months back to download (default: 6, the max)',
+        default=6
     )
 
     parser.add_argument(
@@ -115,7 +121,7 @@ def main():
             print("phone_number = string    # phone number to use.")
             sys.exit(78)
 
-        get_parse_json(args.key, phone, 6)
+        get_parse_json(args.key, phone, int(args.months))
 
 
 def get_parse_json(key, phone, months):
@@ -407,7 +413,7 @@ if __name__ == "__main__":
 
     try:
         main()
-        print(Fore.GREEN + "\n\n:: " + Fore.RESET + "Finished all jobs.")
+        print(Fore.GREEN + "\n:: " + Fore.RESET + "Finished all jobs.")
 
     except KeyboardInterrupt:
         print(Fore.YELLOW + "\n\n:: " + Fore.RESET + "Aborted. Cleaning up...")
