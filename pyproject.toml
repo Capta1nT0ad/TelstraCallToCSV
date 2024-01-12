@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/telstracalltocsv"]
+
+[project]
+name = "telstracalltocsv"
+version = "2.0"
+authors = [
+  { name="Capta1nT0ad" },
+]
+description = "TelstraCallToCSV exports Telstra prepaid call logs to CSV files."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "colorama",
+  "requests",
+  "python-dateutil"
+]
+
+[project.urls]
+Homepage = "https://github.com/Capta1nT0ad/TelstraCallToCSV"
+Issues = "https://github.com/Capta1nT0ad/TelstraCallToCSV/issues"

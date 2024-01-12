@@ -1,8 +1,8 @@
-#!/bin/python3
+#!/usr/bin/env python
 
-import config
 import glob
 import os
+import json
 import sys
 
 from colorama import Fore, Style
@@ -45,7 +45,11 @@ def main():
     )
 
     parser.add_argument(
-        "-P", "--phone", help="override the default account phone number in config.py"
+        "--configure", help="write/create the configuration file", action="store_true"
+    )
+
+    parser.add_argument(
+        "-P", "--phone", help="override the default account phone number in the config"
     )
 
     parser.add_argument(
@@ -83,8 +87,40 @@ def main():
         else:
             print(Fore.BLUE + ":: " + Fore.RESET + "Nothing to clean up.")
 
+    if args.configure:
+        configurator()
+
     if args.copying or args.version or args.clean:
         sys.exit(0)
+
+    # Config file
+
+    if not os.path.isfile(os.path.join(os.path.expanduser("~"), ".telstracall")):
+        print(
+            Fore.RED
+            + "TelstraCallToCSV has not been configured."
+            + Fore.RESET
+        )
+
+        print(
+            Fore.YELLOW
+            + "HINT: You may be running TelstraCallToCSV for the first time.\n"
+            + "HINT: Please run the program with the '--configure' argument.\n"
+            + "HINT: For more information, refer to the documentation."
+            + Fore.RESET
+        )
+
+        print()
+
+        print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
+        sys.exit(78)
+
+    else:
+        with open(os.path.join(os.path.expanduser("~"), ".telstracall"), "r") as config_file:
+            config_content = json.load(config_file)
+
+        config_account_uuid = config_content["account_uuid"]
+        config_phone_number = config_content["phone_number"]
 
     if args.key is None:
         print(
@@ -93,32 +129,20 @@ def main():
         )
         parser.print_help()
 
+        exit(78)
+
+    if args.phone is None:
+        phone = config_phone_number
     else:
-        try:
-            if config.account_uuid is None:
-                print("Please configure TelstraCallToCSV in 'config.py':")
-                print("account_uuid = string    # the account UUID, see docs.")
-                print("phone_number = string    # phone number to use.")
-                sys.exit(78)
-            if args.phone is None:
-                int(config.phone_number)
-                phone = config.phone_number
-            else:
-                phone = args.phone
-        except Exception:
-            print("Please configure TelstraCallToCSV in 'config.py':")
-            print("account_uuid = string    # the account UUID, see docs.")
-            print("phone_number = string    # phone number to use.")
-            sys.exit(78)
+        phone = args.phone
 
-        get_parse_json(args.key, phone, int(args.months))
+    get_parse_json(args.key, phone, config_account_uuid, int(args.months))
 
 
-def get_parse_json(key, phone, months):
+def get_parse_json(key, phone, uuid, months):
     print(Fore.BLUE + "\n:: " + Fore.RESET + "Starting export...")
 
     import requests
-    import json
     from datetime import datetime, date
     from dateutil.relativedelta import relativedelta
 
@@ -173,7 +197,7 @@ def get_parse_json(key, phone, months):
 
         params = {
             "paymentType": "prepaid",
-            "accountUuid": config.account_uuid,
+            "accountUuid": uuid,
             "serviceId": phone,
             "startDate": start_date + "01",
             "endDate": end_date + "01",
@@ -220,7 +244,7 @@ def get_parse_json(key, phone, months):
             )
             print(
                 Fore.YELLOW
-                + "         HINT: Check that config.py is correct."
+                + "         HINT: Check the configuration (--configure)."
                 + Fore.RESET
             )
 
@@ -338,7 +362,7 @@ def get_parse_json(key, phone, months):
 
                 params = {
                     "paymentType": "prepaid",
-                    "accountUuid": config.account_uuid,
+                    "accountUuid": uuid,
                     "serviceId": phone,
                     "startDate": start_date + "01",
                     "endDate": end_date + "01",
@@ -384,7 +408,7 @@ def get_parse_json(key, phone, months):
                     )
                     print(
                         Fore.YELLOW
-                        + "         HINT: Check that config.py is correct."
+                        + "         HINT: Check the configuration (--configure)."
                         + Fore.RESET
                     )
 
@@ -466,6 +490,21 @@ def get_parse_json(key, phone, months):
 
                 print("Done.")
                 print()
+
+
+def configurator():
+    print(Fore.BLUE + "\n:: " + Fore.RESET + "Please configure TelstraCallToCSV.")
+    print("Need help? See the documentation.\n")
+    configurator_uuid = input(" > Account UUID: ")
+    phone_number = input(" > Phone Number: ")
+
+    configuration = {
+        "account_uuid": configurator_uuid,
+        "phone_number": phone_number
+    }
+
+    with open(os.path.join(os.path.expanduser("~"), ".telstracall"), "w") as config_file:
+        json.dump(configuration, config_file)
 
 
 if __name__ == "__main__":
