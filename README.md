@@ -7,7 +7,7 @@
 
 <h2 align="center">converts your Telstra prepaid call history to CSV files.</h2>
 
-<h3 align="center"><a href="https://github.com/blob/master/INSTRUCTIONS.md">Tutorial</a></h4>
+<h3 align="center"><a href="https://github.com/Capta1nT0ad/TelstraCallToCSV/blob/master/INSTRUCTIONS.md">Tutorial</a></h4>
 
 <p align="center">
 <a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
@@ -40,7 +40,7 @@ What this program does is effectively indistinguishable from a normal My Testra 
 A: TelstraCallToCSV actually originated two years ago as a simple parser for the call history format of My Telstra. Recently, it has evolved into a '2.0' version which allows you to automatically fetch six months back of call history without having to manually feed information in and copy it out. The 'legacy' branch provides this old version of TelstraCallToCSV in case you want to feed in your own JSON file.
 
 ## Usage
-**For a detailed guide to using TelstraCallToCSV, please see the <a href="https://github.com/blob/master/INSTRUCTIONS.md">Tutorial</a>.**
+**For a detailed guide to using TelstraCallToCSV, please see the <a href="https://github.com/Capta1nT0ad/TelstraCallToCSV/blob/master/INSTRUCTIONS.md">Tutorial</a>.**
 
 Otherwise, the `--help` output from TelstraCallToCSV is below.
 
