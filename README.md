@@ -1,3 +1,5 @@
+# This is the legacy/1.0 branch, which is two years out of date! For the automatic overhaul, see the master branch.
+ 
  # TelstraCallToCSV
  ### Convert your Telstra call logs to CSV files!
  
