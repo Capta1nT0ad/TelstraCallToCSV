@@ -72,10 +72,11 @@ def main():
     args = parser.parse_args()
 
     if args.copying:
-        print("GPLv3 Placeholder")
+        print("TelstraCallToCSV is licensed under the GNU General Public License version 3 (or later).")
+        print("See https://www.gnu.org/licenses/gpl-3.0-standalone.html for more information.")
 
     if args.version:
-        print("TelstraCallToCSV version 2.0dev")
+        print("TelstraCallToCSV version 2.0.0")
 
     if args.clean:
         if glob.glob("*.csv") != []:
@@ -505,6 +506,9 @@ def configurator():
 
     with open(os.path.join(os.path.expanduser("~"), ".telstracall"), "w") as config_file:
         json.dump(configuration, config_file)
+
+    print(Fore.GREEN + "\n:: " + Fore.RESET + "Finished all jobs.")
+    exit(0)
 
 
 if __name__ == "__main__":
