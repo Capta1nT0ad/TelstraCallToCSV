@@ -1,6 +1,6 @@
 
 <p align="center">
-	<img src="assets/telstracall.svg">
+	<img src="assets/telstracall.png">
 </p>
 
 <h1 align="center">TelstraCallToCSV</h1>
