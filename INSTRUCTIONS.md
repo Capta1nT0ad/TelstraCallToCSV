@@ -8,11 +8,13 @@ This is a beginners' guide which assumes basic knowledge of computers. If you ne
 (Relevant for Firefox, Safari with Developer Mode enabled and Google Chrome/Chromium. Most other browsers support this method in some way or another, but they are not consistent with this documentation. Screenshots are from Firefox.)
 
 ![](assets/address_field1.png)
+
+
 ![](assets/login_field1.png)
 ___
 Go to [https://myservices.telstra.com.au](https://myservices.telstra.com.au).
 
-Enter your e-mail address, then press `Continue.`
+Enter your e-mail address, then press `Continue`.
 ___
 ___
 ![](assets/contextmenu_field2.png)
@@ -25,7 +27,7 @@ ___
 ___
 Find and click `Network` in the sidebar that opened.
 
-In the `Filter URLs` box, type `token.oauth2.`
+In the `Filter URLs` box, type `token.oauth2`.
 ___
 ___
 ![](assets/password_field4.png)
