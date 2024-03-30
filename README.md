@@ -14,7 +14,7 @@
 <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software"><img src="https://img.shields.io/badge/FOSS-100%25-green.svg?style=flat"></a>
 </p>
 
-TelstraCallToCSV is a Free and Open Source program for GNU/Linux Windows, macOS and Android that provides an easy command-line interface to download and export Telstra prepaid call histories to CSV files by utilising the same API that the My Telstra web interface uses to get information and our very own parser to save it to a CSV file.
+TelstraCallToCSV is a Free and Open Source program for GNU/Linux, Windows, macOS and Android that provides an easy command-line interface to download and export Telstra prepaid call histories to CSV files by utilising the same API that the My Telstra web interface uses to get information and our very own parser to save it to a CSV file.
 
 ## FAQ
 ### Q: Why does this exist?
