@@ -5,7 +5,7 @@ This is a beginners' guide which assumes basic knowledge of computers. If you ne
 **Estimated time: 15 minutes**
 
 ### Step 1: Getting your Key
-(Relevant for Firefox, Safari with Developer Mode enabled and Google Chrome/Chromium. Most other browsers support this method in some way or another, but they are not consistent with this documentation. Screenshots are from Firefox.)
+(Relevant for Firefox, Safari with Developer Mode enabled and Google Chrome/Chromium. Most other browsers support this method in some way or another, but they are not consistent with this documentation. Screenshots are from Firefox. **Important: If you are on Android, you can download Kiwi Browser from the Play Store which has the necessary developer tools to follow this tutorial.**)
 
 ![](assets/address_field1.png)
 
