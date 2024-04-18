@@ -177,7 +177,6 @@ options:
   -h, --help            show this help message and exit
   -c, --copying         show the license information
   -v, --version         show the version information
-  -C, --clean           clean all CSV files in the current directory- use with caution!
   --configure           write/create the configuration file
   -P PHONE, --phone PHONE
                         override the default account phone number in the config
@@ -191,8 +190,6 @@ GNU General Public License v3.
 Most notably:
 
 `--configure` allows you to reconfigure your Account UUID and Phone Number. (For advanced users: the configuration file is in JSON and is located in `~/.telstracall`.)
-
-`--clean` will delete all the CSV files in the current directory. You should make sure there are no CSV files in the current directory before running TelstraCallToCSV, because if it fails, this will be automatically run.
 
 `-P` or `--phone` allows you to specify a phone number to override the one in the configuration. Note that you still need to have a phone number in the configuration even with this option.
 
