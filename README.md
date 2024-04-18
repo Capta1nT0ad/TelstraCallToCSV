@@ -56,7 +56,6 @@ options:
   -h, --help            show this help message and exit
   -c, --copying         show the license information
   -v, --version         show the version information
-  -C, --clean           clean all CSV files in the current directory- use with caution!
   --configure           write/create the configuration file
   -P PHONE, --phone PHONE
                         override the default account phone number in the config

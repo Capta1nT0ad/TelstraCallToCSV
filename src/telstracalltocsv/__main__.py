@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import glob
 import os
 import json
 import sys
@@ -38,13 +37,6 @@ def main():
     )
 
     parser.add_argument(
-        "-C",
-        "--clean",
-        help="clean all CSV files in the current directory- use with caution!",
-        action="store_true",
-    )
-
-    parser.add_argument(
         "--configure", help="write/create the configuration file", action="store_true"
     )
 
@@ -78,20 +70,10 @@ def main():
     if args.version:
         print("TelstraCallToCSV version 2.0.0")
 
-    if args.clean:
-        if glob.glob("*.csv") != []:
-            print(Fore.BLUE + ":: " + Fore.RESET + "Cleaning up...")
-            for files in glob.glob("*.csv"):
-                os.remove(files)
-            print(Fore.GREEN + ":: " + Fore.RESET + "Finished all jobs.")
-
-        else:
-            print(Fore.BLUE + ":: " + Fore.RESET + "Nothing to clean up.")
-
     if args.configure:
         configurator()
 
-    if args.copying or args.version or args.clean:
+    if args.copying or args.version:
         sys.exit(0)
 
     # Config file
@@ -228,10 +210,6 @@ def get_parse_json(key, phone, uuid, months):
             )
 
             print()
-
-            print(Fore.RED + ":: " + Fore.RESET + "Cleaning up...")
-            for files in glob.glob("*.csv"):
-                os.remove(files)
             print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
             sys.exit(76)
 
@@ -250,10 +228,6 @@ def get_parse_json(key, phone, uuid, months):
             )
 
             print()
-
-            print(Fore.RED + ":: " + Fore.RESET + "Cleaning up...")
-            for files in glob.glob("*.csv"):
-                os.remove(files)
             print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
             sys.exit(76)
 
@@ -275,10 +249,6 @@ def get_parse_json(key, phone, uuid, months):
             )
 
             print()
-
-            print(Fore.RED + ":: " + Fore.RESET + "Cleaning up...")
-            for files in glob.glob("*.csv"):
-                os.remove(files)
             print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
             sys.exit(76)
 
@@ -392,10 +362,6 @@ def get_parse_json(key, phone, uuid, months):
                     )
 
                     print()
-
-                    print(Fore.RED + ":: " + Fore.RESET + "Cleaning up...")
-                    for files in glob.glob("*.csv"):
-                        os.remove(files)
                     print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
                     sys.exit(76)
 
@@ -414,10 +380,6 @@ def get_parse_json(key, phone, uuid, months):
                     )
 
                     print()
-
-                    print(Fore.RED + ":: " + Fore.RESET + "Cleaning up...")
-                    for files in glob.glob("*.csv"):
-                        os.remove(files)
                     print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
                     sys.exit(76)
 
@@ -439,10 +401,6 @@ def get_parse_json(key, phone, uuid, months):
                     )
 
                     print()
-
-                    print(Fore.RED + ":: " + Fore.RESET + "Cleaning up...")
-                    for files in glob.glob("*.csv"):
-                        os.remove(files)
                     print(Fore.RED + ":: " + Fore.RESET + "Finished all jobs.")
                     sys.exit(76)
 
@@ -517,7 +475,5 @@ if __name__ == "__main__":
         print(Fore.GREEN + "\n:: " + Fore.RESET + "Finished all jobs.")
 
     except KeyboardInterrupt:
-        print(Fore.YELLOW + "\n\n:: " + Fore.RESET + "Aborted. Cleaning up...")
-        for files in glob.glob("*.csv"):
-            os.remove(files)
+        print(Fore.YELLOW + "\n\n:: " + Fore.RESET + "Aborted.")
         print(Fore.GREEN + ":: " + Fore.RESET + "Finished all jobs.")
