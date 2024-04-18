@@ -14,16 +14,16 @@
 <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software"><img src="https://img.shields.io/badge/FOSS-100%25-green.svg?style=flat"></a>
 </p>
 
-TelstraCallToCSV is a Free and Open Source program for GNU/Linux, Windows and macOS that provides an easy command-line interface to download and export Telstra prepaid call histories to CSV files by utilising the same API that the My Telstra web interface uses to get information and our very own parser to save it to a CSV file.
+TelstraCallToCSV is a Free and Open Source program for GNU/Linux, Windows, macOS and Android that provides an easy command-line interface to download and export Telstra prepaid call histories to CSV files by utilising the same API that the My Telstra web interface uses to get information and our very own parser to save it to a CSV file.
 
 ## FAQ
 ### Q: Why does this exist?
 
-A: A few years ago, Telstra upgraded (really?) their web interface and removed the ability to download call histories as CSV files for prepaid plans. I saw that many others online (including myself) had expressed their frustration with this change (on https://whirlpool.net and other sites), and after taking quick look at the JSON format for call history, it became clear that it would be trivial to build a utility like this to export the information efficiently to CSV files.
+A: A few years ago, Telstra upgraded (really?) their web interface and removed the ability to download call histories as CSV files for prepaid plans. I saw that many others online (including myself) had expressed their frustration with this change (on https://whirlpool.net and other sites), and after taking a quick look at the JSON format for call history, it became clear that it would be trivial to build a utility like this to export the information efficiently to CSV files.
 
 ### Q: Are you stealing my login credentials?
 
-A: The only request the device makes is to Telstra's own server to download the call history content. Other than that, no data ever leaves your device and *most importantly*, is never sent to a third-party server like mine.
+A: The only request the device makes is to Telstra's own server to download the call history content. Other than that, no data ever leaves your device and, *most importantly*, is never sent to a third-party server like mine.
 
 This is the beauty of FOSS software: you yourself can review the code extremely easily and personally vet it. This program only defines two different HTTP requests and they are both to Telstra's API, where information like your Account UUID and Access Token are securely sent over HTTPS.
 
@@ -31,7 +31,7 @@ This is the beauty of FOSS software: you yourself can review the code extremely 
 
 A: No.
 
-I have attempted to look over all of Telstra's policies that would be relevant to this project and have found that the only usage of their web services that they specifically disallow is defined as usage that would distrupt the experience of other users.
+I have attempted to look over all of Telstra's policies that would be relevant to this project and have found that the only usage of their web services that they specifically disallow is defined as usage that would disrupt the experience of other users.
 
 What this program does is effectively indistinguishable from a normal My Testra user's activity on the Call History dashboard, so there is no distruption to Telstra's service from this program and especially no risk of your My Telstra account being denied access to their services.
 

@@ -5,14 +5,16 @@ This is a beginners' guide which assumes basic knowledge of computers. If you ne
 **Estimated time: 15 minutes**
 
 ### Step 1: Getting your Key
-(Relevant for Firefox, Safari with Developer Mode enabled and Google Chrome/Chromium. Most other browsers support this method in some way or another, but they are not consistent with this documentation. Screenshots are from Firefox.)
+(Relevant for Firefox, Safari with Developer Mode enabled and Google Chrome/Chromium. Most other browsers support this method in some way or another, but they are not consistent with this documentation. Screenshots are from Firefox. **Important: If you are on Android, you can download Kiwi Browser from the Play Store which has the necessary developer tools to follow this tutorial.**)
 
 ![](assets/address_field1.png)
+
+
 ![](assets/login_field1.png)
 ___
 Go to [https://myservices.telstra.com.au](https://myservices.telstra.com.au).
 
-Enter your e-mail address, then press `Continue.`
+Enter your e-mail address, then press `Continue`.
 ___
 ___
 ![](assets/contextmenu_field2.png)
@@ -25,7 +27,7 @@ ___
 ___
 Find and click `Network` in the sidebar that opened.
 
-In the `Filter URLs` box, type `token.oauth2.`
+In the `Filter URLs` box, type `token.oauth2`.
 ___
 ___
 ![](assets/password_field4.png)
@@ -64,10 +66,11 @@ Depending on your operating system, you need to open one of the following applic
 - GNU/Linux: The terminal emulator you have installed, such as Konsole or GNOME Terminal
 - Windows: Command Prompt or PowerShell
 - macOS: Terminal, or another terminal emulator you have installed such as iTerm2.
+- Android: Get [F-Droid](f-droid.org), an app store for open-source applications. From F-Droid, download Termux and use that to enter the commands from this tutorial. Do not download Termux from the Play Store.
 
 All of these applications will give you a text prompt that looks something like this:
 
-GNU/Linux or macOS:
+GNU/Linux, macOS or Android:
 ```sh
 user@computer ~ $
 ```
@@ -85,7 +88,7 @@ We need to download and install TelstraCallToCSV. We can do this using Python's 
 
 Run the following command to download and install TelstraCallToCSV from PyPi, the Python Package Index:
 
-GNU/Linux or macOS:
+GNU/Linux, macOS or Android:
 ```sh
 python3 -m pip install telstracalltocsv
 ```
@@ -101,7 +104,7 @@ This command will output some text as it downloads and installs TelstraCallToCSV
 
 TelstraCallToCSV has a built in configuration file which is not set up by default. Before running TelstraCallToCSV, you must set this up:
 
-GNU/Linux or macOS:
+GNU/Linux, macOS or Android:
 ```sh
 python3 -m telstracalltocsv --configure
 ```
@@ -118,7 +121,7 @@ You will be prompted for your Account UUID and your Phone Number. Type or copy i
 
 Finally, run TelstraCallToCSV, substituting `<key>` with your key gathered from Step 1.
 
-GNU/Linux or macOS:
+GNU/Linux, macOS or Android:
 ```sh
 python3 -m telstracalltocsv <key>
 ```
